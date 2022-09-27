@@ -12,6 +12,7 @@ struct TicTacToeExpansionApp: App {
     var body: some Scene {
         WindowGroup {
             SplashView()
+//            ContentView(goal: 4)
         }
     }
 }

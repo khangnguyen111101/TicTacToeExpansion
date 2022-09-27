@@ -15,12 +15,14 @@ import SwiftUI
 import Lottie
 // Looping animated splash screen
 struct LottieView: UIViewRepresentable {
+    @Environment(\.colorScheme) var colorScheme
+    
     var loopMode: LottieLoopMode = .loop
     // animated GIF view
     func makeUIView(context: UIViewRepresentableContext<LottieView>) -> UIView {
         let view = UIView(frame: .zero)
         let animationView = AnimationView()
-        let animation = Animation.named("78269-tic-tac-toe")
+        let animation = Animation.named(colorScheme == .dark ? "splashGIF-dark" : "splashGIF-light")
         animationView.animation = animation
         animationView.loopMode = loopMode
         animationView.contentMode = .scaleAspectFit

@@ -16,14 +16,14 @@ import Lottie
 
 // loop animated GIF for 3 seconds before going to the main list view
 struct SplashView: View {
-    
+    @Environment(\.colorScheme) var colorScheme
     @State var isActive:Bool = false
     @State var opacity: Double = 1
     
     var body: some View {
         VStack {
             if self.isActive {
-                ContentView()
+                MenuView()
             } else {
                 ZStack {
                     LottieView()
@@ -32,6 +32,7 @@ struct SplashView: View {
                             .system(.largeTitle)
                             .weight(.bold)
                         )
+                        .foregroundColor(Color(colorScheme == .dark ? "#ff7000" : "#000000"))
                         .offset(y: 220)
                 }
                 .opacity(self.opacity)
@@ -40,6 +41,7 @@ struct SplashView: View {
         // 5.
         .onAppear {
             // 6.
+            MusicPlayer.shared.startBackgroundMusic()
             DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                 // 7.
                 withAnimation {
@@ -50,7 +52,6 @@ struct SplashView: View {
         }
     }
 }
-
 struct SplashView_Previews: PreviewProvider {
     static var previews: some View {
         SplashView()
